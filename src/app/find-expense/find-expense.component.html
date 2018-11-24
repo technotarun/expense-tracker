@@ -1,0 +1,96 @@
+<div>
+  <form #f="ngForm" (ngSubmit)="onGetExpense(f)">
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" name="fromDate" ngModel placeholder="Choose from date" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <span class="spaceBetween"></span>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker1" name="toDate" ngModel placeholder="Choose to date" required>
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <span class="spaceBetween"></span>
+
+    <button mat-raised-button color="primary">Get Expense</button>
+  </form>
+
+  <button mat-raised-button color="warn" (click)="deleteExpenseData();">Delete Expense</button>
+  <span class="spaceBetween"></span>
+  <button mat-raised-button color="primary" (click)="editExpense();" *ngIf="this.selection.selected.length === 1">Edit Expense</button>
+
+  <div class="spinner-container" *ngIf = "isLoaderVisible">
+      <mat-spinner></mat-spinner>
+  </div>
+
+</div>
+<span class="spaceBetween"></span>
+<div>
+  <table #table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+     <!-- Checkbox Column -->
+     <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="id">
+			<th mat-header-cell *matHeaderCellDef> ID. </th>
+			<td mat-cell *matCellDef="let element">
+				<mat-form-field floatLabel="never">
+					<input matInput placeholder="Id" [value]="element.id" [(ngModel)]="element.id">
+				</mat-form-field>
+      </td>
+		</ng-container> -->
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="added_date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.added_date}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
+
+</div>

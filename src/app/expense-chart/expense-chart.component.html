@@ -1,0 +1,21 @@
+<form #f="ngForm" (ngSubmit)="onGetExpenseForDateRange(f)">
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" name="fromDate" ngModel placeholder="Choose from date" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <span class="spaceBetween"></span>
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker1" name="toDate" ngModel placeholder="Choose to date" required>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <span class="spaceBetween"></span>
+
+    <button mat-raised-button color="primary">Get Expense</button>
+</form>
+
+<div type="PieChart" id="chart1"></div>

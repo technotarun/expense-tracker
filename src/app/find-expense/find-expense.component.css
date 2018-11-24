@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+}
+
+th.mat-sort-header-sorted {
+color: black;
+}
+
+.spaceBetween {
+    padding-left: 50px;
+}
+
+.spinner-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* td{
+    min-width: 100px !important;
+    max-width: 100px !important;
+    width: 100px !important;
+}
+
+td:first-child{
+    min-width: 30px !important;
+    max-width: 30px !important;
+    width: 30px !important;
+} */

@@ -1,0 +1,34 @@
+<div class="add-expense-container">
+  <form #f="ngForm" (ngSubmit)="onExpenseSubmit(f)">
+
+    <mat-form-field>
+      <input matInput placeholder="Add Description" name="addDescription" ngModel>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Choose a category" name="addSelectedCategory" ngModel required>
+        <mat-option *ngFor="let category of categories" [value]="category.viewValue">
+          {{category.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" name="addDate" ngModel placeholder="Choose a date" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Amount" name="addAmount" ngModel type="number" class="add-expense-left-align" required>
+      <span matPrefix>&#x20A8;&nbsp;</span>
+      <span matSuffix>.00</span>
+    </mat-form-field>
+
+    <div class="button-row">
+      <button mat-raised-button color="primary">Add Expense</button>
+      <button mat-raised-button color="warn" (click) = "onReset($event)">Clear Expense</button>
+    </div>
+
+  </form>
+</div>

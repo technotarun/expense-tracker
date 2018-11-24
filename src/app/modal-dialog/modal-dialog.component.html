@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Update expense for <strong>{{data.description}}</strong></h1>
+<div mat-dialog-content>
+  
+  <mat-form-field>
+    <input matInput placeholder="Description" name="description" [(ngModel)]="data.description">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Category" name="category" [(ngModel)]="data.category">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Amount" name="amount" type="number" [(ngModel)]="data.amount">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" name="addDate" [(ngModel)]="data.added_date" placeholder="Added date" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data.id" (click)="updateData(data)" cdkFocusInitial>Save</button>
+  <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+</div>

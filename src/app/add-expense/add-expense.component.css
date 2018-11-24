@@ -1,0 +1,25 @@
+.add-expense-container form{
+
+}
+
+.add-expense-container form > * {
+    width: 100%;
+}
+
+.add-expense-left-align {
+    text-align: left;
+}
+
+input.add-expense-right-align::-webkit-outer-spin-button,
+input.add-expense-right-align::-webkit-inner-spin-button {
+    display: none;
+}
+
+input.add-expense-right-align {
+    -moz-appearance: textfield;
+}
+
+.button-row button,
+.button-row a {
+  margin-right: 8px;
+}
